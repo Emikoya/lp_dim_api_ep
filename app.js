@@ -5,7 +5,8 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 
 var indexRouter = require('./routes/index');
-var spellRouter = require('./routes/spells')
+var spellRouter = require('./routes/spells');
+var classeRouter = require('./routes/classes');
 
 var app = express();
 
@@ -25,5 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/spells', spellRouter);
+app.use('/classes', classeRouter);
 
 module.exports = app;

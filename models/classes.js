@@ -2,22 +2,21 @@
 var mongoose = require("mongoose");
 const { DateTime } = require("luxon");
 
-// (Étape 2) Définition du schéma spell
+// (Étape 2) Définition du schéma classe
 // https://mongoosejs.com/docs/guide.html
 // https://mongoosejs.com/docs/schematypes.html#schematype-options
-const spellSchema = new mongoose.Schema({
+const classeSchema = new mongoose.Schema({
     _id: { type: Number, required: true },
     name: { type: String, required: true },
-    class: { type: String, required: true, ref: "classes" },
-});
+    });
 
 // (Étape 3) Création d'une nouvelle propriété virtuelle "id" qui aura la valeur de la propriété "_id"
-spellSchema.virtual("id").get(function () {
+classeSchema.virtual("id").get(function () {
     return this._id;
 });
 
 // (Étape 3) Définition de l'object qui sera retourné lorsque la méthode toJSON est appelée
-spellSchema.set("toJSON", {
+classeSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
     transform: function (doc, ret) {
@@ -25,6 +24,6 @@ spellSchema.set("toJSON", {
     },
   });
 
-// (Étape 4) Export du modèle spell
+// (Étape 4) Export du modèle classe
 // Les modèles sont responsables de la création et de la lecture des documents à partir de la base de données MongoDB.
-module.exports = mongoose.model("spells", spellSchema);
+module.exports = mongoose.model("classes", classeSchema);
